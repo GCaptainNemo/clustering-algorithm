@@ -32,9 +32,12 @@ Kmeans算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 
 ## 三、总结
-## 1. 从效果对比可以看出，kmeans的分类边界是圆形，本质上就是其认为高斯分布协方差矩阵是单位矩阵，而GMM的分类边界则是椭圆。
-## 2. GMM和Kmeans均需要设定聚类的个数K和参数初始值，由于EM算法只能保证收敛到稳定点，因此初始点的选择十分重要。这里采用最远点采样技术(farthest point sampling，FPS)进行初始均值的选择，FPS是一种贪婪算法，除了初值随意采样之外，后面采样的点，都得保证其与已采样点集的haussdroff 距离最大。
+1. 从效果对比可以看出，kmeans的分类边界是圆形，本质上就是其认为高斯分布协方差矩阵是单位矩阵，而GMM的分类边界则是椭圆。
+2. GMM和Kmeans均需要设定聚类的个数K和参数初始值，由于EM算法只能保证收敛到稳定点，因此初始点的选择十分重要。这里采用最远点采样技术(farthest point sampling，FPS)进行初始均值的选择，FPS是一种贪婪算法，除了初值随意采样之外，后面采样的点，都得保证其与已采样点集的haussdroff 距离最大。
 
+## 四、参考
+1. [website](https://zhuanlan.zhihu.com/p/71574416)
+2. Gelman A , Carlin J B , Stern H S , et al. Bayesian Data Analysis, London[J]. Biometrics, 1996, 52(3).
 
 
 
