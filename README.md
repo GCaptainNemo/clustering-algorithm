@@ -1,5 +1,9 @@
 # 聚类算法
-聚类属于无监督学习范畴，在没有标注的情况下，对数据进行划分(partition)。聚类算法可以看成生成式模型，存在一个不可观测的隐变量Z(类别)，控制着观测数据X的生成。这里介绍GMM和K-means两种聚类算法，K-means可以看作GMM的特例，两者都用EM算法优化，并且M步都有闭式解。
+聚类属于无监督学习范畴，在没有标注的情况下，对数据进行划分(partition)。聚类算法可以看成生成式模型，存在一个不可观测的隐变量Z(类别)，控制着观测数据X的生成，对应的概率图如下所示：
+
+![PGM](./resources/clustering_PGM.png)
+
+GMM和K-means两种聚类算法都可以用该概率图表示，其中K-means可以看作GMM的特例，两者都用EM算法优化，并且M步都有闭式解。
 
 ## 一、高斯混合模型(GMM)
 ## 1. 简介
@@ -9,8 +13,16 @@
 GMM采用EM(Expectation Maximization)优化算法求解最优参数θ，EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数。具体参考 Andrew Gelman 的
 Bayesian Data Analysis 书籍。
 ## 3. 效果
+1.数据
+
 ![data](./result/data.png)
-![GMM](./result/GMM.png)
+
+2.K = 3
+
+![GMM](./result/GMM_3.png)
+
+3.K = 4
+
 ![GMM](./result/GMM_4.png)
 
 
@@ -27,7 +39,12 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 
 ## 3. 效果
+1. 数据
+
 ![K-means](./result/data.png)
+
+2. k = 3
+
 ![K-means](./result/Kmeans.png)
 
 
