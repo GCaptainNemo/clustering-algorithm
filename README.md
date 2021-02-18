@@ -9,7 +9,7 @@
 GMM采用EM(Expectation Maximization)优化算法求解最优参数θ，EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数。具体参考 Andrew Gelman 的
 Bayesian Data Analysis 书籍。
 ## 3. 效果
-[data](./results/data.png)
+[data](./result/data.png)
 
 
 
