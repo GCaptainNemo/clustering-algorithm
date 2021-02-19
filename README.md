@@ -1,5 +1,5 @@
 # 聚类算法
-聚类属于无监督学习范畴，在没有标注的情况下，对数据进行划分(partition)。聚类算法可以看成生成式模型，存在一个不可观测的隐变量Z(类别)，控制着观测数据X的生成，对应的概率图如下所示：
+聚类属于无监督学习范畴，在没有标注的情况下，对数据进行划分(partition)。聚类算法可以看成生成式模型，存在一个离散隐变量Z，控制着观测数据X的生成，对应的概率图如下所示：
 
 ![PGM](./resources/clustering_PGM.png)
 
@@ -10,7 +10,7 @@ GMM和K-means两种聚类算法都可以用该概率图表示，其中K-means可
 高斯混合模型认为观测变量X|θ服从混合高斯分布，隐变量Z服从Categorical分布，x|z,θ 服从高斯分布。其中θ代表高斯分布均值、协方差矩阵、和混合系数的集合，它们都是待优化参数。
 使用最大似然估计进行参数估计，即 θ* = argmax logP(X|θ)。 
 ## 2. EM算法
-EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobserved variables)的模型寻找极大似然估计的常用技术，GMM采用EM(Expectation Maximization)优化算法求解最优参数θ。EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数，两者交替直至似然函数收敛或者参数收敛。EM算法也可用来求最大后验估计(MAP)，只需要在M步将待优化函数变成Q(θ|θt) + log P(θ) 具体参考 Christopher M. Bishop的PRML书籍第九章。
+EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobserved variables)的模型进行极大似然估计的常用技术，GMM采用EM(Expectation Maximization)优化算法求解最优参数θ。EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数，两者交替直至似然函数收敛或者参数收敛。EM算法也可用来求最大后验估计(MAP)，只需要在M步将待优化函数变成Q(θ|θt) + log P(θ) 具体参考 Christopher M. Bishop的PRML书籍第九章。
 ## 3. 效果
 1.数据
 
@@ -27,7 +27,8 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 
 ## 二、K-means聚类算法
 ## 1. 简介
-K-means算法可以看成GMM算法的特例，满足
+K-means算法
+可以看成GMM算法的特例，满足
 1. 正态分布的协方差矩阵是εI(I是单位矩阵)
 2. 当ε-->0时，关于隐变量的后验概率z|x, θ服从dirac Delta分布，在最近的第K个团簇概率为1，其余为0。
 
