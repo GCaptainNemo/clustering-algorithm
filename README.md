@@ -60,9 +60,12 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 4. 在K值的选取方面，常用Elbow准则进行选取。
 5. 比较K-means和GMM关于z后验概率的形式，我们一般称K-means是硬分配(hard assignment),GMM是软分配(soft assignment)。
 
-## 四、参考
+## 四、参考资料
 1. Bishop C M . Pattern Recognition and Machine Learning (Information Science and Statistics)[M]. Springer-Verlag New York, Inc. 2006.
 2. [website](https://zhuanlan.zhihu.com/p/81255623)
+
+## 五、补充
+1. Fuzzy C Means(FCM) 聚类算法 [link](./FCM.md)
 
 
 
