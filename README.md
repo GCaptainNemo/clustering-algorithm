@@ -52,12 +52,11 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 
 ## 三、总结
-1. 从效果对比可以看出，k-means的分类边界是圆形，本质上就是其认为高斯分布协方差矩阵是单位矩阵，而GMM的分类边界则是椭圆。
-2. 在参数初始值方面，由于EM算法只能保证收敛到稳定点，因此初始点的选择十分重要。这里采用最远点采样技术(farthest point sampling，FPS)进行初始均值的选择，FPS是一种贪婪算法，除了初值随意采样之外，后面采样的点，都得保证其与已采样点集的haussdroff 距离最大。
-3. 在K值的选取方面，常用Elbow准则进行选取
-4. 在对新数据进行预测的时候，常用 z* = argmax P(z|x, θ)
-5. K-means由于经过简化，相对于GMM速度更快，因此GMM初始均值常用K-means最终值赋予。
-6. 比较K-means和GMM关于z后验概率的形式，我们一般称K-means是硬分配(hard assignment),GMM是软分配(soft assignment)。
+1. 从效果对比可以看出，k-means的聚类边界是圆形，而GMM的聚类边界则是椭圆，这是由协方差矩阵决定的。
+2. 在参数初始值方面，EM算法只能保证收敛到稳定点，因此初始点的选择十分重要。这里采用最远点采样技术(farthest point sampling，FPS)进行初始均值的选择，FPS是一种贪婪算法，除了初值随意采样之外，后面采样的点，都得保证其与已采样点集的haussdroff 距离最大。
+3. K-means由于经过简化，相对于GMM速度更快，因此GMM初始均值常用K-means最终值赋予。
+4. 在K值的选取方面，常用Elbow准则进行选取。
+5. 比较K-means和GMM关于z后验概率的形式，我们一般称K-means是硬分配(hard assignment),GMM是软分配(soft assignment)。
 
 ## 四、参考
 1. Bishop C M . Pattern Recognition and Machine Learning (Information Science and Statistics)[M]. Springer-Verlag New York, Inc. 2006.
