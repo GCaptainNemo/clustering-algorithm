@@ -10,7 +10,7 @@ GMM和K-means两种聚类算法都可以用该概率图表示，其中K-means可
 高斯混合模型认为观测变量X|θ服从混合高斯分布，隐变量Z服从Categorical分布，x|z,θ 服从高斯分布。其中θ代表高斯分布均值、协方差矩阵、和混合系数的集合，它们都是待优化参数。
 使用最大似然估计进行参数估计，即 θ* = argmax logP(X|θ)。 
 ## 2. EM算法
-GMM采用EM(Expectation Maximization)优化算法求解最优参数θ，EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数。具体参考 Andrew Gelman 的
+EM算法是对具有隐变量的模型寻找极大似然估计的常用技术，GMM采用EM(Expectation Maximization)优化算法求解最优参数θ，EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数。具体参考 Andrew Gelman 的
 Bayesian Data Analysis 书籍。
 ## 3. 效果
 1.数据
