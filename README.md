@@ -29,7 +29,9 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 ## 1. 简介
 ### 1.1 优化视角
 K-means算法可以理解为优化如下目标函数:
+
 ![K-means](./resources/KMeans_loss_function.jpg)
+
 其中μ<sub>k</sub>和r<sub>nk</sub>是待优化变量，K-means算法采取先固定r<sub>nk</sub>优化μ<sub>k</sub>，再固定μ<sub>k</sub>优化r<sub>nk</sub>，两者交替进行使得目标函数在每一步都可以减小直至收敛。
 
 ### 1.2 概率视角
