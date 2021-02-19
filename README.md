@@ -12,15 +12,15 @@ GMM和K-means两种聚类算法都可以用该概率图表示，其中K-means可
 ## 2. EM算法
 EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobserved variables)的模型进行极大似然估计的常用技术，GMM采用EM(Expectation Maximization)优化算法求解最优参数θ。EM算法分为E步和M步，其中E步需要求关于隐变量z的后验概率P(z|x, θt)，M步需要极大化Q(θ|θt)函数，两者交替直至似然函数收敛或者参数收敛。EM算法也可用来求最大后验估计(MAP)，只需要在M步将待优化函数变成Q(θ|θt) + log P(θ) 具体参考 Christopher M. Bishop的PRML书籍第九章。
 ## 3. 效果
-1.数据
+#### 1.数据
 
 ![data](./result/data.png)
 
-2.K = 3
+#### 2.聚类数K = 3
 
 ![GMM](./result/GMM_3.png)
 
-3.K = 4
+#### 3.聚类数K = 4
 
 ![GMM](./result/GMM_4.png)
 
@@ -44,11 +44,11 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 
 ## 3. 效果
-1. 数据
+#### 1. 数据
 
 ![K-means](./result/data.png)
 
-2. k = 3
+#### 2. 聚类数k = 3
 
 ![K-means](./result/Kmeans.png)
 
