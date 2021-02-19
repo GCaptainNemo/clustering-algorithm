@@ -5,8 +5,8 @@
 
 ![FCM loss function](resources/FCM_loss_function.jpg)
 
-优化变量为均值v<sub>j</sub>和隶属度u<sub>ij</sub>，其中u<sub>ij</sub>的幂次m称为模糊稀疏(fuzzy coefficient)，和聚类个数同为超参数。
-FCM优化方式同样是交替优化，即固定一个变量优化另一个变量，交替进行，直至收敛，FCM每步优化和GMM一样都具有闭式解。
+优化变量为均值v<sub>j</sub>和隶属度u<sub>ij</sub>，其中u<sub>ij</sub>的幂次m称为模糊系数(fuzzy coefficient)，和聚类数同为超参数。
+FCM优化方式同样是交替优化，即固定一个变量优化另一个变量，交替进行至收敛，FCM每步优化和GMM一样都具有闭式解。
 
 ## 二、效果
 ### 1. 聚类个数为3， 模糊系数取3
