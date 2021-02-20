@@ -66,6 +66,8 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 ## 五、补充
 1. Fuzzy C Means(FCM) 聚类算法 [link](./FCM.md)
+2. Hierachical clustering [link](HC.md)
+
 
 
 

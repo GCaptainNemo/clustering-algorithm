@@ -72,7 +72,7 @@ class hierachical:
 
 
 if __name__ == "__main__":
-    a = hierachical(3)
+    a = hierachical(2)
     a.make_data()
     a.cluster()
     a.prediction()
