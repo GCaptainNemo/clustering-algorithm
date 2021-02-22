@@ -1,10 +1,11 @@
 # 谱聚类(Spectral clustering)算法
 ## 1. 介绍
-谱聚类基于图论中无向带权图(undirected weighted graph)的切图，一个无向带权图可以表示成G = (V, E, W)有序三元组的形式，其中V代表图中所有顶点组成的集合，E代表所有边的集合，
-W代表边上所有权重的集合。权重wij≥0 衡量的是点i和点j的相似度，若wij=0则说明点i和点j之间没有边连接。
+谱聚类基于图论中无向带权图的切图，一个无向带权图可以表示成G = (V, E, W)有序三元组的形式，其中V代表图中所有节点的集合，E代表所有边的集合，
+W代表边上所有权重的集合(衡量的是相似度，即两个点的距离越远则权重越小)。
 
-### 1.1 计算邻接矩阵(Adjacent matrix)
-观测数据只是图上的顶点，需要给观测数据计算各边的权重，即邻接矩阵(Adjacent matrix)。
+### 1.1 计算邻接矩阵(Adjacence matrix)
+观测数据只是图上的顶点，首先需要给观测数据赋予图的拓扑结构，
+或者说用某种规则计算图的邻接矩阵(Adjacence matrix)，这两者是等价的。
 这里用三种方式计算邻接矩阵(又称为相似度矩阵)：近邻法(ε-neighborhood graph)，k近邻法(k-nearest nerghbor graph)，全连接法(fully connected graph)。
 
 #### 1.1.1 ε-neighborhood graph
@@ -23,13 +24,13 @@ W代表边上所有权重的集合。权重wij≥0 衡量的是点i和点j的相
 
 ![fully connected graph](../resources/Spectral_clustering/SC_fully_connect.jpg)
 
-## 1.2 Laplace矩阵
+## 1.2 Laplacian matrix
 
-### 1.2.1 未标准化Laplace矩阵
+### 1.2.1 unnormalized laplacian matrix
 图论中有四大矩阵：
 1. Degree matrix D
-2. Adjacent matrix W
-3. Laplace matrix L
+2. Adjacency matrix W
+3. Laplacian matrix L
 4. Incidence matrix A
 
 其中 L = D - W = A<sup>T</sup>A，其中D是一个对角阵，对角元素等于W每行元素的和。考虑矩阵L的二次型：
@@ -38,14 +39,14 @@ W代表边上所有权重的集合。权重wij≥0 衡量的是点i和点j的相
 
 且L**1** = **0** 由此得拉普拉斯矩阵是一个对称半正定矩阵。
 
-### 1.2.2 标准化Laplace矩阵
+### 1.2.2 normalized laplacian matrix
 
 标准化拉普拉斯矩阵有两种表示方法，1. 基于随机游走(Random Walk)的标准化拉普拉斯矩阵L<sub>rw</sub> 2. 对称标准化拉普拉斯矩阵L<sub>sym</sub>，
 定义如下：
 
 ![normalize laplace](../resources/Spectral_clustering/laplace_normalize.jpg)
 
-标准化后的laplace矩阵有如下性质:
+标准化后的拉普拉斯矩阵有如下性质:
 
 ![attribute](../resources/Spectral_clustering/laplace_normalize_attribute.jpg)
 
