@@ -12,11 +12,11 @@
 ## 二、效果
 ### 1. 聚类数为3
 
-![HC_3.png](../result/HC_3.png)
+![HC_3.png](../result/Hierachical_clustering/HC_3.png)
 
 ### 2. 聚类数为2
 
-![HC_2.png](../result/HC_2.png)
+![HC_2.png](../result/Hierachical_clustering/HC_2.png)
 
 # 三、总结
 可以看到当聚类数取2时，层次聚类完美地分离了数据。这里也可以看到层次聚类的优势，用以概率为基础的生成式模型进行聚类，总需要假设数据服从某种分布，
