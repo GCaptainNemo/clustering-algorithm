@@ -23,13 +23,13 @@ W代表边上所有权重的集合。权重wij≥0 衡量的是点i和点j的相
 
 ![fully connected graph](../resources/Spectral_clustering/SC_fully_connect.jpg)
 
-## 1.2 Laplace矩阵
+## 1.2 Laplacian Matrix
 
-### 1.2.1 未标准化Laplace矩阵
+### 1.2.1 Unnormalized Laplacian Matrix
 图论中有四大矩阵：
 1. Degree matrix D
-2. Adjacent matrix W
-3. Laplace matrix L
+2. Adjacence matrix W
+3. Laplacian  matrix L
 4. Incidence matrix A
 
 其中 L = D - W = A<sup>T</sup>A，其中D是一个对角阵，对角元素等于W每行元素的和。考虑矩阵L的二次型：
@@ -38,14 +38,14 @@ W代表边上所有权重的集合。权重wij≥0 衡量的是点i和点j的相
 
 且L**1** = **0** 由此得拉普拉斯矩阵是一个对称半正定矩阵。
 
-### 1.2.2 标准化Laplace矩阵
+### 1.2.2 Normalized Laplacian Matrix
 
-标准化拉普拉斯矩阵有两种表示方法，1. 基于随机游走(Random Walk)的标准化拉普拉斯矩阵L<sub>rw</sub> 2. 对称标准化拉普拉斯矩阵L<sub>sym</sub>，
+归一化拉普拉斯矩阵有两种表示方法，1. 基于随机游走(Random Walk)的标准化拉普拉斯矩阵L<sub>rw</sub> 2. 对称标准化拉普拉斯矩阵L<sub>sym</sub>，
 定义如下：
 
 ![normalize laplace](../resources/Spectral_clustering/laplace_normalize.jpg)
 
-标准化后的laplace矩阵有如下性质:
+不难发现矩阵L<sub>rw</sub> 和矩阵L<sub>sym</sub>相似，具有相同的特征值。除此之外，归一化后的拉普拉斯矩阵有如下性质:
 
 ![attribute](../resources/Spectral_clustering/laplace_normalize_attribute.jpg)
 
