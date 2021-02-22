@@ -1,12 +1,13 @@
 # 谱聚类(Spectral clustering)算法
 ## 1. 介绍
-谱聚类基于图论中无向带权图的切图，一个无向带权图可以表示成G = (V, E, W)有序三元组的形式，其中V代表图中所有节点的集合，E代表所有边的集合，
-W代表边上所有权重的集合(衡量的是相似度，即两个点的距离越远则权重越小)。
+谱聚类基于图论中无向带权图(undirected weighted graph)的切图，是解决松弛版本加了平衡条件(balancing condition)最小割问题的方法。
+一个无向带权图可以表示成G = (V, E, W)有序三元组的形式，其中V代表图中所有节点的集合，E代表所有边的集合，
+W代表边上所有权重的集合,W<sub>ij</sub>衡量的是点i和点j的相似度，可以用一个矩阵表示。
 
 ### 1.1 计算邻接矩阵(Adjacence matrix)
-观测数据只是图上的顶点，首先需要给观测数据赋予图的拓扑结构，
-或者说用某种规则计算图的邻接矩阵(Adjacence matrix)，这两者是等价的。
-这里用三种方式计算邻接矩阵(又称为相似度矩阵)：近邻法(ε-neighborhood graph)，k近邻法(k-nearest nerghbor graph)，全连接法(fully connected graph)。
+观测数据只是图上的顶点，首先需要给观测数据赋予图的拓扑结构和权重，
+或者说计算图的邻接矩阵(Adjacence matrix)，这两者是等价的。
+有三种方式计算邻接矩阵(又称为相似度矩阵)：近邻法(ε-neighborhood graph)，k近邻法(k-nearest nerghbor graph)，全连接法(fully connected graph)。
 
 #### 1.1.1 ε-neighborhood graph
 
@@ -27,7 +28,7 @@ W代表边上所有权重的集合(衡量的是相似度，即两个点的距离
 
 ## 1.2 Laplacian matrix
 
-### 1.2.1 unnormalized laplacian matrix
+### 1.2.1 Unnormalized Laplacian Matrix
 图论中有四大矩阵：
 1. Degree matrix D
 2. Adjacency matrix W
@@ -59,20 +60,22 @@ n个样本点聚成k类：
 2. 计算度矩阵D
 3. 计算Laplace矩阵L(标准化或者非标准化)
 4. 计算L的特征值，特征值从小到大排列，取前k个特征值对应的特征向量，构成R<sup>n×k</sup>矩阵U
-5. 使用K-means或其它聚类算法将U的每一行作为特征聚成k类
+5. 使用K-means或其它聚类算法将U的每一行作为数据新的表示聚成k类
 
-**注意**：最后一步用到的聚类算法可以是其它的聚类算法，具体根据实际情况而定。在sklearn中默认是使用KMeans算法，由于KMeans聚类对初始聚类中心的选择比较敏感，进而导致谱聚类算法不稳定，
+**注意**：
+1. 在sklearn中默认是使用K-Means算法，由于K-Means聚类对初始聚类中心的选择比较敏感，进而导致谱聚类算法不稳定，
 在sklearn中有另外一个可选项是'discretize'，该算法对初始聚类中心的选择不敏感。
+2. 该算法模板对于L和L<sub>rw</sub>矩阵是完全一致的，但对于L<sub>sym</sub>，还需要在聚类前加一步行归一化。
 
-为什么可以用Laplace矩阵最小特征值对应的特征向量作为节点的特征进行聚类？回看1.2.1节Laplace矩阵的二次型，
+为什么可以用Laplace矩阵最小特征值对应的特征向量作为数据新的表示进行聚类？回看1.2.1节Laplace矩阵的二次型，
 考虑最小化该二次型，对于那些w<sub>ij</sub>较大的点(即数据i和j的相似程度较高)，(xi-xj)<sup>2</sup>会较小，
-所以如果最小化该二次型会趋向于给wij较小的两个数据点相近的xi和xj，xi和xj就可以用来作为原数据聚类的特征。
-所以谱聚类可以理解为将高维空间的数据映射到低维，然后在低维空间用其它聚类算法（如KMeans）进行聚类。
+所以如果最小化该二次型会趋向于给w<sub>ij</sub>较大的两个数据点相近的xi和xj，xi和xj就可以用来作为原数据聚类的一个表示。
+所以谱聚类还可以理解为将高维空间的数据映射到低维，然后在低维空间用其它聚类算法（如K-Means）进行聚类。
 
 
 ## 2. 效果
 
-经过试验，使用不同的laplace矩阵对聚类结果的影响并不大。这里采用全连接图，未归一化的Laplace矩阵。
+经过试验，使用不同的Laplacian矩阵对聚类结果的影响并不大。这里采用全连接图，未归一化的Laplace矩阵。
 
 #### 1. variance = 1， K = 2
 
