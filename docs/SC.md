@@ -4,8 +4,7 @@
 W代表边上所有权重的集合。权重wij≥0 衡量的是点i和点j的相似度，若wij=0则说明点i和点j之间没有边连接。
 
 ### 1.1 计算邻接矩阵(Adjacent matrix)
-观测数据只是图上的顶点，首先需要给观测数据赋予图的拓扑结构，
-或者说用某种规则计算图的邻接矩阵(Adjacent matrix)，这两者是等价的。
+观测数据只是图上的顶点，需要给观测数据计算各边的权重，即邻接矩阵(Adjacent matrix)。
 这里用三种方式计算邻接矩阵(又称为相似度矩阵)：近邻法(ε-neighborhood graph)，k近邻法(k-nearest nerghbor graph)，全连接法(fully connected graph)。
 
 #### 1.1.1 ε-neighborhood graph
