@@ -26,5 +26,5 @@ FCM优化方式同样是交替优化，即固定一个变量优化另一个变�
 参数个数随着观测数据的增加而线性增加。而GMM和K-means则可以通过求隐变量后验概率预测新样本的类别。
 
 # 四、参考资料
-1. [website](https://zhuanlan.zhihu.com/p/85244505)
+1. [https://zhuanlan.zhihu.com/p/85244505](https://zhuanlan.zhihu.com/p/85244505)
 
