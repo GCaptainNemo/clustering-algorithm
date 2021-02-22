@@ -18,11 +18,11 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 
 #### 2.聚类数K = 2
 
-![GMM](result/GMM/GMM_2.png)
+![GMM_2](result/GMM/GMM_2.png)
 
 #### 3.聚类数K = 3
 
-![GMM](result/GMM/GMM_3.png)
+![GMM_3](result/GMM/GMM_3.png)
 
 
 ## 二、K-means聚类算法
@@ -30,7 +30,7 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 ### 1.1 优化视角
 K-means算法可以理解为优化如下目标函数:
 
-![K-means](resources/KMeans_GMM/KMeans_loss_function.jpg)
+![Kmeans loss function](resources/KMeans_GMM/KMeans_loss_function.jpg)
 
 其中μ<sub>k</sub>和r<sub>nk</sub>是待优化变量，K-means算法采取先固定r<sub>nk</sub>优化μ<sub>k</sub>，再固定μ<sub>k</sub>优化r<sub>nk</sub>，两者交替进行使得目标函数在每一步都可以减小直至收敛。
 
@@ -46,11 +46,11 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 ## 3. 效果
 #### 1. 数据
 
-![K-means](result/data.png)
+![data](result/data.png)
 
 #### 2. 聚类数k = 2
 
-![K-means](result/kmeans/Kmeans_2.png)
+![Kmeans_2](result/kmeans/Kmeans_2.png)
 
 
 ## 三、总结
@@ -63,12 +63,12 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 ## 四、参考资料
 1. Bishop C M . Pattern Recognition and Machine Learning (Information Science and Statistics)[M]. Springer-Verlag New York, Inc. 2006.
-2. [website](https://zhuanlan.zhihu.com/p/81255623)
+2. [https://zhuanlan.zhihu.com/p/81255623](https://zhuanlan.zhihu.com/p/81255623)
 
 ## 五、补充
-1. Fuzzy C Means(FCM) [link](docs/FCM.md)
-2. Hierachical clustering [link](docs/HC.md)
-3. Spectral clustering [link](docs/SC.md)
+1. [Fuzzy C Means(FCM)](docs/FCM.md)
+2. [Hierachical clustering ](docs/HC.md)
+3. [Spectral clustering ](docs/SC.md)
 
 
 
