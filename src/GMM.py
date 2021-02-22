@@ -47,7 +47,7 @@ class GMM:
         while True:
             wik, Qfunction = self.e_step(miu_lst, covariance_lst, alpha_lst)
             alpha_lst, miu_lst, covariance_lst = self.m_step(wik, miu_lst)
-            if abs(Qfunction - old_Qfunction) < 1:
+            if abs(Qfunction - old_Qfunction) < 0.1:
                 break
             old_Qfunction = Qfunction
         self.alpha_lst = alpha_lst
@@ -134,7 +134,7 @@ class GMM:
 
 
 if __name__ == "__main__":
-    a = GMM(3, 2)
+    a = GMM(2, 2)
     a.make_data()
     a.cluster()
     a.prediction()

@@ -96,7 +96,7 @@ class kmeans:
 
 
 if __name__ == "__main__":
-    a = kmeans(4, 2)
+    a = kmeans(3, 2)
     a.make_data()
     a.cluster()
     a.prediction()

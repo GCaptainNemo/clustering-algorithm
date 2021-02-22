@@ -107,7 +107,7 @@ class FCM:
 
 
 if __name__ == "__main__":
-    a = FCM(3, 2, 3)
+    a = FCM(2, 2, 3)
     a.make_data()
     a.cluster()
     a.prediction()

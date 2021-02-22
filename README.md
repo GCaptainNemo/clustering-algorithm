@@ -1,7 +1,7 @@
 # 聚类算法
 聚类属于无监督学习范畴，在没有标注的情况下，将数据划分成K类，使得类内距离最小，类间距离最大，形成团簇(cluster)。聚类算法可以看成生成式模型，存在一个离散隐变量Z(类别)，控制着观测数据X的生成，对应的概率图如下所示：
 
-![PGM](./resources/clustering_PGM.png)
+![PGM](resources/KMeans_GMM/clustering_PGM.png)
 
 GMM和K-means两种聚类算法都可以用该概率图表示，其中K-means可以看作GMM的特例，两者都用EM算法优化，并且M步都有闭式解。
 
@@ -14,15 +14,15 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 ## 3. 效果
 #### 1.数据
 
-![data](./result/data.png)
+![data](result/data.png)
 
-#### 2.聚类数K = 3
+#### 2.聚类数K = 2
 
-![GMM](./result/GMM_3.png)
+![GMM](result/GMM/GMM_2.png)
 
-#### 3.聚类数K = 4
+#### 3.聚类数K = 3
 
-![GMM](./result/GMM_4.png)
+![GMM](result/GMM/GMM_3.png)
 
 
 ## 二、K-means聚类算法
@@ -30,7 +30,7 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 ### 1.1 优化视角
 K-means算法可以理解为优化如下目标函数:
 
-![K-means](./resources/KMeans_loss_function.jpg)
+![K-means](resources/KMeans_GMM/KMeans_loss_function.jpg)
 
 其中μ<sub>k</sub>和r<sub>nk</sub>是待优化变量，K-means算法采取先固定r<sub>nk</sub>优化μ<sub>k</sub>，再固定μ<sub>k</sub>优化r<sub>nk</sub>，两者交替进行使得目标函数在每一步都可以减小直至收敛。
 
@@ -46,28 +46,29 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 ## 3. 效果
 #### 1. 数据
 
-![K-means](./result/data.png)
+![K-means](result/data.png)
 
-#### 2. 聚类数k = 3
+#### 2. 聚类数k = 2
 
-![K-means](./result/Kmeans.png)
+![K-means](result/kmeans/Kmeans_2.png)
 
 
 ## 三、总结
 1. 从效果对比可以看出，k-means的聚类边界是圆形，而GMM的聚类边界则是椭圆，这是由协方差矩阵决定的。
 2. 在参数初始值方面，EM算法只能保证收敛到稳定点，因此初始点的选择十分重要。这里采用最远点采样技术(farthest point sampling，FPS)进行初始均值的选择，FPS是一种贪婪算法，除了初值随意采样之外，后面采样的点，都得保证其与已采样点集的haussdroff 距离最大。
-3. K-means由于经过简化，相对于GMM速度更快，因此GMM初始均值常用K-means最终值赋予。
+3. K-means由于经过简化，相对于GMM速度更快，因此GMM初值常用K-means赋予。
 4. 在K值的选取方面，常用Elbow准则进行选取。
 5. 比较K-means和GMM关于z后验概率的形式，我们一般称K-means是硬分配(hard assignment),GMM是软分配(soft assignment)。
+6. K-means和GMM都假设了数据服从某分布，当数据与假设分布差距较大时，聚类效果不好，这时可以用谱聚类或者层次聚类。
 
 ## 四、参考资料
 1. Bishop C M . Pattern Recognition and Machine Learning (Information Science and Statistics)[M]. Springer-Verlag New York, Inc. 2006.
 2. [website](https://zhuanlan.zhihu.com/p/81255623)
 
 ## 五、补充
-1. Fuzzy C Means(FCM) [link](./FCM.md)
-2. Hierachical clustering [link](HC.md)
-3. Spectral clustering [link](SC.md)
+1. Fuzzy C Means(FCM) [link](docs/FCM.md)
+2. Hierachical clustering [link](docs/HC.md)
+3. Spectral clustering [link](docs/SC.md)
 
 
 
