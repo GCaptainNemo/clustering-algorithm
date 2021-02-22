@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import make_moons
 
-
 class hierachical:
     def __init__(self, cluster_number):
         """
@@ -18,8 +17,6 @@ class hierachical:
         plt.scatter(self.X_data[one_index, 0], self.X_data[one_index, 1], c='r')
         plt.scatter(self.X_data[zero_index, 0], self.X_data[zero_index, 1], c='b')
         plt.show()
-
-
 
     def cluster(self):
         """ bottom-to-top clustering """
@@ -55,7 +52,6 @@ class hierachical:
             dis_matrix = np.delete(dis_matrix, [row, column], 0)
             dis_matrix = np.delete(dis_matrix, [row, column], 1)
             print("after delete shape = ", dis_matrix.shape)
-
 
     def prediction(self):
         dic = {0: "r", 1: "g", 2: "b", 3: "k"}

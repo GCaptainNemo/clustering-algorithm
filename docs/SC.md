@@ -63,16 +63,34 @@ n个样本点聚成k类：
 **注意**：最后一步用到的聚类算法可以是其它的聚类算法，具体根据实际情况而定。在sklearn中默认是使用KMeans算法，由于KMeans聚类对初始聚类中心的选择比较敏感，进而导致谱聚类算法不稳定，
 在sklearn中有另外一个可选项是'discretize'，该算法对初始聚类中心的选择不敏感。
 
-可能有人会问为什么可以用Laplace矩阵最小特征值对应的特征向量作为节点的特征进行聚类。这一点可以回看1.2.1节Laplace矩阵的二次型，
+为什么可以用Laplace矩阵最小特征值对应的特征向量作为节点的特征进行聚类？回看1.2.1节Laplace矩阵的二次型，
 考虑最小化该二次型，对于那些w<sub>ij</sub>较大的点(即数据i和j的相似程度较高)，(xi-xj)<sup>2</sup>会较小，
-所以如果最小化该二次型会趋向于给wij较小的点相近的label——xi和xj。
+所以如果最小化该二次型会趋向于给wij较小的两个数据点相近的xi和xj，xi和xj就可以用来作为原数据聚类的特征。
+所以谱聚类可以理解为将高维空间的数据映射到低维，然后在低维空间用其它聚类算法（如KMeans）进行聚类。
 
 
+## 2. 效果
+
+经过试验，使用不同的laplace矩阵对聚类结果的影响并不大。这里采用全连接图，未归一化的Laplace矩阵。
+
+#### 1. variance = 1， K = 2
+
+![SC_2](../result/Spectral_clustering/SC_2.png)
+
+#### 2. variance = 0.1， K = 3
+
+![SC_3](../result/Spectral_clustering/SC_3.png)
+
+##  3. 总结
+1. 谱聚类是一种用Laplace矩阵较小特征值对应的特征向量作为特征进行聚类的算法。相当于将原数据映射到了一个低维的嵌入空间中，
+因此谱聚类适合用于高维数据的聚类。
+2. 当聚类类别多的时候不建议使用谱聚类。
+3. 谱聚类对相似度矩阵的改变和方差的改变十分敏感，往往需要调参。
+4. 谱聚类适合用于均衡分类问题，即各簇之间的点数差别不大。
 
 
-
-
-[https://blog.csdn.net/qq_24519677/article/details/82291867](https://blog.csdn.net/qq_24519677/article/details/82291867)
+##  4. 参考资料
+1. [A Tutorial on Spectral Clustering](http://yaroslavvb.com/papers/luxburg-tutorial.pdf)
 
 
 
