@@ -13,15 +13,24 @@
 
 ![ε-neighborhood graph](../resources/Spectral_clustering/SC_episilon.jpg)
 
-可以看到ε-neighborhood graph把带权图退化成无权图。
+可以看到ε-neighborhood graph把带权图退化成无权图。ε是一个待调整的参数，当数据出现的密度相差较大的时候
+(如下图所示)，该方法会使得较密的数据点之间有边连接，而较稀疏的则没有，也就是说ε-neighborhood graph不能适应数据尺度的不同。
+
+![episilon graph](../resources/Spectral_clustering/episilon_graph.jpg)
 
 ### 1.1.2 k-nearest nerghbor graph
 
+下图中，第一种KNN方式为k-nearest nerghbor graph， 第二种为 mutual k-nearest nerghbor graph。其中
+k-nearest nerghbor graph可以对不同密度(尺度)的点进行连接，低密度的点可以和高密度的点连接。而 mutual k-nearest nerghbor graph则趋向于连接相同密度的点，
+不会连接不同密度的点，mutual k-nearest nerghbor graph非常适合对不同密度的数据点进行聚类。
+
 ![k-nearest nerghbor graph](../resources/Spectral_clustering/SC_K_neighbour.jpg)
+
+![KNN graph](../resources/Spectral_clustering/KNN_graph.jpg)
 
 ### 1.1.3 fully connected graph
 
-该方法认为数据构成的图是一张全连接图
+该方法认为数据构成的图是一张全连接图，和ε-neighborhood graph的参数ε类似，参数σ越大，则相当于数据点的邻域越大。
 
 ![fully connected graph](../resources/Spectral_clustering/SC_fully_connect.jpg)
 
@@ -92,9 +101,7 @@ n个样本点聚成k类：
 ##  3. 总结
 1. 谱聚类是一种用Laplace矩阵较小特征值对应的特征向量作为特征进行聚类的算法。相当于将原数据映射到了一个低维的嵌入空间中，
 因此谱聚类适合用于高维数据的聚类。
-2. 当聚类类别多的时候不建议使用谱聚类。
-3. 谱聚类对相似度矩阵的改变和方差的改变十分敏感，往往需要调参。
-4. 谱聚类适合用于均衡分类问题，即各簇之间的点数差别不大。
+2. 谱聚类对相似度矩阵的改变和方差的改变十分敏感，往往需要调参。
 
 
 ##  4. 参考资料
