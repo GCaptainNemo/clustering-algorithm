@@ -5,13 +5,18 @@ import heapq
 from src.Kmeans import kmeans
 
 class Spectral_custering:
-    def __init__(self, cluster_number, variance):
+    def __init__(self, cluster_number, graph_option="fc", *args):
         """
         :param cluster_number: number of center
-        :param variance: 控制数据的领域，越大，相当于领域越大
+        :param graph_option:
+            fc: fully connected graph
+            mutual_knn: mutual knn graph
+            knn: knn graph
+            episilon: episilon-neighbour graph
         """
         self.cluster_num = cluster_number
-        self.variance = variance
+        self.graph_option = graph_option
+        self.parameter = args
 
     def make_data(self):
         self.X_data, self.Y_data = make_moons(100, noise=.04, random_state=0)
@@ -23,7 +28,7 @@ class Spectral_custering:
 
     def cluster(self):
         """ spectral clustering """
-        self.adjacent_matrix = self.cal_adjacent_matrix(graph="fc")
+        self.adjacent_matrix = self.cal_adjacent_matrix(self.graph_option, *self.parameter)
         self.degree_matrix = np.diag(np.sum(self.adjacent_matrix, axis=0))
         self.cal_laplace_matrix()
         [egvalue, egvector] = np.linalg.eig(self.laplace_matrix)
@@ -36,16 +41,69 @@ class Spectral_custering:
         self.kmeans_obj.index_set = np.zeros(self.kmeans_obj.X_data.shape[0])
         self.kmeans_obj.cluster()
 
-    def cal_adjacent_matrix(self, graph="fc"):
+    def cal_adjacent_matrix(self, graph="fc", *args):
         if graph == "fc":
             # 全连接图
+            variance = args[0]
             data_num = self.X_data.shape[0]
             adjacent_matrix = np.zeros([data_num, data_num])
             for i in range(data_num):
                 for j in range(i + 1, data_num):
                     adjacent_matrix[i, j] = np.exp(-np.linalg.norm([self.X_data[i] - self.X_data[j]]) /
-                                                   (2 * self.variance))
+                                                   (2 * variance))
                     adjacent_matrix[j, i] = adjacent_matrix[i, j]
+        elif graph == "mutual_knn":
+            k = args[0]
+            variance = args[1]
+            data_num = self.X_data.shape[0]
+            dist_matrix = np.zeros([data_num, data_num])
+            for i in range(data_num):
+                for j in range(i + 1, data_num):
+                    dist_matrix[i, j] = np.linalg.norm([self.X_data[i] - self.X_data[j]])
+                    dist_matrix[j, i] = dist_matrix[i, j]
+
+            adjacent_matrix = np.zeros([data_num, data_num])
+            for i in range(data_num):
+                for j in range(i + 1, data_num):
+                    i_knn = list(map(list(dist_matrix[i, :]).index,
+                                                  heapq.nsmallest(k + 1, list(dist_matrix[i, :]))))
+                    j_knn = list(map(list(dist_matrix[j, :]).index,
+                                     heapq.nsmallest(k + 1, list(dist_matrix[j, :]))))
+                    if (j in i_knn) and (i in j_knn):
+                        adjacent_matrix[i, j] = np.exp(-np.linalg.norm([self.X_data[i] - self.X_data[j]]) /
+                                                       (2 * variance))
+                        adjacent_matrix[j, i] = adjacent_matrix[i, j]
+        elif graph == "knn":
+            k = args[0]
+            variance = args[1]
+            data_num = self.X_data.shape[0]
+            dist_matrix = np.zeros([data_num, data_num])
+            for i in range(data_num):
+                for j in range(i + 1, data_num):
+                    dist_matrix[i, j] = np.linalg.norm([self.X_data[i] - self.X_data[j]])
+                    dist_matrix[j, i] = dist_matrix[i, j]
+
+            adjacent_matrix = np.zeros([data_num, data_num])
+            for i in range(data_num):
+                for j in range(i + 1, data_num):
+                    i_knn = list(map(list(dist_matrix[i, :]).index,
+                                     heapq.nsmallest(k + 1, list(dist_matrix[i, :]))))
+                    j_knn = list(map(list(dist_matrix[j, :]).index,
+                                     heapq.nsmallest(k + 1, list(dist_matrix[j, :]))))
+                    if (j in i_knn) or (i in j_knn):
+                        adjacent_matrix[i, j] = np.exp(-np.linalg.norm([self.X_data[i] - self.X_data[j]]) /
+                                                       (2 * variance))
+                        adjacent_matrix[j, i] = adjacent_matrix[i, j]
+        elif graph == "episilon":
+            episilon = args[0]
+            data_num = self.X_data.shape[0]
+            adjacent_matrix = np.zeros([data_num, data_num])
+            for i in range(data_num):
+                for j in range(i + 1, data_num):
+                    dis = np.linalg.norm([self.X_data[i] - - self.X_data[j]])
+                    if dis < episilon:
+                        adjacent_matrix[j, i] = adjacent_matrix[i, j] = 1
+
         return adjacent_matrix
 
     def cal_laplace_matrix(self, option="unnormalized"):
@@ -75,7 +133,7 @@ class Spectral_custering:
 
 
 if __name__ == "__main__":
-    a = Spectral_custering(3, 0.1)
+    a = Spectral_custering(2, "mutual_knn", 5, 0.1)
     a.make_data()
     a.cluster()
     a.prediction()

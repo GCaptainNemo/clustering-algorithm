@@ -88,15 +88,16 @@ n个样本点聚成k类：
 
 ## 2. 效果
 
-经过试验，使用不同的Laplacian矩阵对聚类结果的影响并不大。这里采用全连接图，未归一化的Laplace矩阵。
+使用未归一化的Laplace矩阵：
 
-#### 1. variance = 1， K = 2
+#### 1. 全连接图 variance = 1， K = 2
 
-![SC_2](../result/Spectral_clustering/SC_2.png)
+![SC_2](../result/Spectral_clustering/SC_FC_2.png)
 
-#### 2. variance = 0.1， K = 3
+#### 2. mutual KNN variance=0.1 K = 2
 
-![SC_3](../result/Spectral_clustering/SC_3.png)
+![mutual KNN](../result/Spectral_clustering/SC_mutual_KNN_2.png)
+
 
 ##  3. 总结
 1. 谱聚类是一种用Laplace矩阵较小特征值对应的特征向量作为特征进行聚类的算法。相当于将原数据映射到了一个低维的嵌入空间中，
