@@ -1,14 +1,14 @@
 # DBSCAN 聚类算法
 ## 1. 简介
-DBSCAN(Density-Based Spatial Clustering of Applications with Noise)是一种基于密度，对噪声具有鲁棒性的空间聚类算法。DBSCAN算法认为，数据之所以可以聚类成团簇，
-是因为团簇类数据点的密度比团簇外的点的密度高得多。此外，噪声的密度比任何团簇的密度低得多。
+DBSCAN(Density-Based Spatial Clustering of Applications with Noise)是一种基于密度，对噪声具有鲁棒性的空间聚类算法。DBSCAN算法认为数据可以聚类成团簇，
+是因为团簇内数据点的密度比团簇外的点的密度高得多。此外，噪声的密度比任何团簇的密度低得多。
 
 ### 1.1 DBSCAN算法参数和三种点
 DBSCAN算法需要赋予两个参数，半径R和最小点数minPts。DBSCAN提出待聚类数据可以划分成三种点，分别是核心点(core point)、边界点(border point)和噪声点(noise point)。
 其中点P被称为核心点当且仅当以该点为中心，R为半径的点数超过minPts。边界点指的是以该点为圆心，R为半径的点数小于minPts，但是该点属于某个团簇。
 相应的，以该点为中心，R为半径的点数小于minPts且不属于任何团簇的点是噪声点。
 
-**注意**:DBSCAN认为一个点是噪声的必要条件是它的密度小于参数定义的密度。
+****注意****:DBSCAN认为一个点是噪声的必要条件是它的密度小于参数定义的密度。
 
 ### 1.2 点之间的关系
 DBSCAN论文中引入了三种关系，分别是：
