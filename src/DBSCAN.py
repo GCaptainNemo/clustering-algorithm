@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.datasets import make_moons
+from sklearn.datasets import make_moons, make_blobs
 
 class DBSCAN:
     def __init__(self, radius, min_pts):
@@ -13,11 +13,20 @@ class DBSCAN:
         self.min_pts = min_pts
 
     def make_data(self):
-        self.X_data, self.Y_data = make_moons(100, noise=.04, random_state=0)
+        X_data_noise, y_data = make_blobs(n_samples=10, n_features=2, center_box=(0.25, 0.5), centers=1, cluster_std=1.5)
+        X_data, self.Y_data = make_moons(100, noise=.04, random_state=0)
+        print("shape = ")
+        print(X_data.shape)
+        print(X_data_noise.shape)
+
+        self.X_data = np.concatenate([X_data, X_data_noise], axis=0)
+        print(self.X_data.shape)
         one_index = np.where(self.Y_data == 1)
         zero_index = np.where(self.Y_data == 0)
         plt.scatter(self.X_data[one_index, 0], self.X_data[one_index, 1], c='r')
-        plt.scatter(self.X_data[zero_index, 0], self.X_data[zero_index, 1], c='b')
+        plt.scatter(self.X_data[zero_index, 0], self.X_data[zero_index, 1], c='g')
+        plt.scatter(self.X_data[X_data.shape[0]:, 0],
+                    self.X_data[X_data.shape[0]:, 1], c='b')
         plt.show()
 
     def cluster(self):
@@ -61,25 +70,24 @@ class DBSCAN:
                                 if self.musk[neighbor_index, 0] in [0, -1]:
                                     stack.append(neighbor_index)
 
-        print("cluster_num = ", self.cluster_num)
-
     def prediction(self):
         dic = {0: "r", 1: "g", 2: "b", 3: "k", 4:"y"}
         plt.figure()
         ax = plt.gca()
         ax.axis("equal")
-        print("noise = ", np.where(self.musk == -1))
+        noise_index_array = np.where(self.musk == -1)[0]
+        plt.scatter(self.X_data[noise_index_array, 0],
+                    self.X_data[noise_index_array, 1], c=dic[0])
         for i in range(self.cluster_num):
-            index_array = np.where(self.musk == i + 1)
-            print("cluster ", i + 1, "=", index_array)
+            index_array = np.where(self.musk == i + 1)[0]
             plt.scatter(self.X_data[index_array, 0],
                         self.X_data[index_array, 1],
-                        c=dic[i])
+                        c=dic[i + 1])
         plt.show()
 
 
 if __name__ == "__main__":
-    a = DBSCAN(0.2, 4)
+    a = DBSCAN(0.3, 4)
     a.make_data()
     a.cluster()
     a.prediction()
