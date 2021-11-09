@@ -11,12 +11,12 @@
 
 #### 1.1.1 ε-neighborhood graph
 
-![ε-neighborhood graph](../resources/Spectral_clustering/SC_episilon.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/SC_episilon.jpg" width=50%></p>
 
 可以看到ε-neighborhood graph把带权图退化成无权图。ε是一个待调整的参数，当数据出现的密度相差较大的时候
 (如下图所示)，该方法会使得较密的数据点之间有边连接，而较稀疏的则没有，也就是说ε-neighborhood graph不能适应数据尺度的不同。
 
-![episilon graph](../resources/Spectral_clustering/episilon_graph.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/episilon_graph.jpg" width=50%></p>
 
 ### 1.1.2 k-nearest nerghbor graph
 
@@ -24,16 +24,16 @@
 k-nearest nerghbor graph可以对不同密度(尺度)的点进行连接，低密度的点可以和高密度的点连接。而 mutual k-nearest nerghbor graph则趋向于连接相同密度的点，
 不会连接不同密度的点，mutual k-nearest nerghbor graph非常适合对不同密度的数据点进行聚类。
 
-![k-nearest nerghbor graph](../resources/Spectral_clustering/SC_K_neighbour.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/SC_K_neighbour.jpg" width=50%></p>
 
-![KNN graph](../resources/Spectral_clustering/KNN_graph.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/KNN_graph.jpg" width=50%></p>
+
 
 ### 1.1.3 fully connected graph
 
 该方法认为数据构成的图是一张全连接图，和ε-neighborhood graph的参数ε类似，参数σ越大，则相当于数据点的邻域越大。
 
-![fully connected graph](../resources/Spectral_clustering/SC_fully_connect.jpg)
-
+<p align="center"><img src="../resources/Spectral_clustering/SC_fully_connect.jpg" width=50%></p>
 
 ## 1.2 Laplacian matrix
 
@@ -46,7 +46,7 @@ k-nearest nerghbor graph可以对不同密度(尺度)的点进行连接，低密
 
 其中 L = D - W = A<sup>T</sup>A，其中D是一个对角阵，对角元素等于W每行元素的和。考虑矩阵L的二次型：
 
-![laplace quadratic form](../resources/Spectral_clustering/laplace_quadratic.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/laplace_quadratic.jpg" width=50%></p>
 
 且L**1** = **0** 由此得拉普拉斯矩阵是一个对称半正定矩阵。
 
@@ -55,11 +55,11 @@ k-nearest nerghbor graph可以对不同密度(尺度)的点进行连接，低密
 归一化拉普拉斯矩阵有两种表示方法，1. 基于随机游走(Random Walk)的标准化拉普拉斯矩阵L<sub>rw</sub> 2. 对称标准化拉普拉斯矩阵L<sub>sym</sub>，
 定义如下：
 
-![normalize laplace](../resources/Spectral_clustering/laplace_normalize.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/laplace_normalize.jpg" width=50%></p>
 
 不难发现矩阵L<sub>rw</sub> 和矩阵L<sub>sym</sub>相似，具有相同的特征值。除此之外，归一化后的拉普拉斯矩阵有如下性质:
 
-![attribute](../resources/Spectral_clustering/laplace_normalize_attribute.jpg)
+<p align="center"><img src="../resources/Spectral_clustering/laplace_normalize_attribute.jpg" width=50%></p>
 
 不同版本谱聚类算法的区别在于相似度矩阵W的计算方式和拉普拉斯矩阵的计算方法，其它步骤基本相同。
 
@@ -92,12 +92,11 @@ n个样本点聚成k类：
 
 #### 1. 全连接图 variance = 1， K = 2
 
-![SC_2](../result/Spectral_clustering/SC_FC_2.png)
+<p align="center"><img src="../result/Spectral_clustering/SC_FC_2.png" width=50%></p>
 
 #### 2. mutual KNN variance=0.1 K = 2
 
-![mutual KNN](../result/Spectral_clustering/SC_mutual_KNN_2.png)
-
+<p align="center"><img src="../result/Spectral_clustering/SC_mutual_KNN_2.png" width=50%></p>
 
 ##  3. 总结
 1. 谱聚类是一种用Laplace矩阵较小特征值对应的特征向量作为特征进行聚类的算法。相当于将原数据映射到了一个低维的嵌入空间中，
