@@ -49,7 +49,7 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 
 #### 2. 聚类数k = 2
 
-<p align="center"><img src="result/kmeans/Kmeans_2.png" width=50%></p>
+<p align="center"><img src="result/kmeans/kmeans_2.png" width=50%></p>
 
 ## 三、总结
 1. 从效果对比可以看出，k-means的聚类边界是圆形，而GMM的聚类边界则是椭圆，这是由协方差矩阵决定的。
