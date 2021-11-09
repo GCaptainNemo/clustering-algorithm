@@ -1,7 +1,7 @@
 # 聚类算法
 聚类属于无监督学习范畴，在没有标注的情况下，将数据划分成K类，使得类内距离最小，类间距离最大，形成团簇(cluster)。基于概率的聚类算法可以看成生成式模型，存在一个离散隐变量Z(类别)，控制着观测数据X的生成，对应的概率图如下所示：
 
-![PGM](resources/KMeans_GMM/clustering_PGM.png)
+<p align="center"><img src="resources/KMeans_GMM/clustering_PGM.png" width=50%></p>
 
 GMM和K-means两种聚类算法都可以用该概率图表示，且隐变量Z之间是**独立同分布**的。K-means可以看作GMM的特例，两者都用EM算法优化，并且M步都有闭式解。
 
@@ -14,23 +14,22 @@ EM算法是对具有隐变量(latent variables)或者未观测数据变量(unobs
 ## 3. 效果
 #### 1.数据
 
-![data](result/data.png)
+<p align="center"><img src="result/data.png" width=50%></p>
 
 #### 2.聚类数K = 2
 
-![GMM_2](result/GMM/GMM_2.png)
+<p align="center"><img src="result/GMM/GMM_2.png" width=50%></p>
 
 #### 3.聚类数K = 3
 
-![GMM_3](result/GMM/GMM_3.png)
-
+<p align="center"><img src="result/GMM/GMM_3.png" width=50%></p>
 
 ## 二、K-means聚类算法
 ## 1. 简介
 ### 1.1 优化视角
 K-means算法可以理解为优化如下目标函数:
 
-![Kmeans loss function](resources/KMeans_GMM/KMeans_loss_function.jpg)
+<p align="center"><img src="resources/KMeans_GMM/KMeans_loss_function.jpg" width=30%></p>
 
 其中μ<sub>k</sub>和r<sub>nk</sub>是待优化变量，K-means算法采取先固定r<sub>nk</sub>优化μ<sub>k</sub>，再固定μ<sub>k</sub>优化r<sub>nk</sub>，两者交替进行使得目标函数在每一步都可以减小直至收敛。
 
@@ -46,12 +45,11 @@ K-means算法同样可以看成使用EM算法进行优化，其中E步求隐变�
 ## 3. 效果
 #### 1. 数据
 
-![data](result/data.png)
+<p align="center"><img src="result/data.png" width=50%></p>
 
 #### 2. 聚类数k = 2
 
-![Kmeans_2](result/kmeans/Kmeans_2.png)
-
+<p align="center"><img src="result/kmeans/Kmeans_2.png" width=50%></p>
 
 ## 三、总结
 1. 从效果对比可以看出，k-means的聚类边界是圆形，而GMM的聚类边界则是椭圆，这是由协方差矩阵决定的。
