@@ -3,7 +3,7 @@
 前面介绍的GMM和K-means聚类算法都可以看做用EM算法求解一个隐变量模型。FCM的出发点是改进K-means优化函数的形式，认为数据点不再是硬分配(hard assignment)取0或者1的形式，而是具有某种隶属度u<sub>ij</sub>，
 优化目标函数如下所示：
 
-![FCM loss function](../resources/FCM/FCM_loss_function.jpg)
+<p align="center"><img src="../resources/FCM/FCM_loss_function.jpg" width=30%></p>
 
 优化变量为均值v<sub>j</sub>和隶属度u<sub>ij</sub>，其中u<sub>ij</sub>的幂次m称为模糊系数(fuzzy coefficient)，和聚类数同为超参数。
 FCM优化方式同样是交替优化，即固定一个变量优化另一个变量，交替进行至收敛，FCM每步优化和GMM一样都具有闭式解。
@@ -11,16 +11,17 @@ FCM优化方式同样是交替优化，即固定一个变量优化另一个变�
 ## 二、效果
 ### 1. 聚类个数为2， 模糊系数取3
 
-![FCM_2.png](../result/FCM/FCM_2.png)
+<p align="center"><img src="../result/FCM/FCM_2.png" width=50%></p>
 
 ### 2. 聚类个数为3， 模糊系数取3
 
-![FCM_3.png](../result/FCM/FCM_3.png)
+<p align="center"><img src="../result/FCM/FCM_3.png" width=50%></p>
 
 # 三、总结
 这里给出模糊系数m = 1情况下FCM的一个基于概率的生成式模型解释，概率图如下所示：
 
-![PGM](../resources/KMeans_GMM/clustering_PGM.png)
+
+<p align="center"><img src="../resources/KMeans_GMM/clustering_PGM.png" width=50%></p>
 
 可以看到该概率图与K-Means和GMM的概率图相同，区别在于K-Means和GMM假设隐变量Z<sub>i</sub>, i=1, 2, ..., n之间是独立同分布的；FCM则认为
 Z<sub>i</sub>之间独立但是服从不同的Categorical分布，X<sub>i</sub>|Z<sub>i</sub>高斯分布的协方差矩阵都是一个相同的对角阵。
