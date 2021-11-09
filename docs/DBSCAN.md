@@ -34,20 +34,19 @@ DBSCAN论文中引入了三种关系，分别是：
 
 #### 1. 不加噪声数据 
 
-![data without noise](../result/data.png)
+<p align="center"><img src="../result/data.png" width=50%></p>
 
 #### 2. 不加噪声结果, R = 0.3, minPts = 4
 
-![result without noise](../result/DBSCAN/DBSCAN_2.png)
+<p align="center"><img src="../result/DBSCAN/DBSCAN_2.png" width=50%></p>
 
 #### 3. 加高斯噪声数据，标准差为1.5
 
-![data with noise](../result/DBSCAN/Data_with_noise.png)
+<p align="center"><img src="../result/DBSCAN/Data_with_noise.png" width=50%></p>
 
 #### 4. 加噪声聚类结果
 
-![result with noise](../result/DBSCAN/DBSCAN_with_noise.png)
-
+<p align="center"><img src="../result/DBSCAN/DBSCAN_with_noise.png" width=50%></p>
 
 ## 3. 总结
 1. DBSCAN通过密度先验构造了数据之间的某种关系进行聚类，相对于GMM和K-means聚类算法，DBSCAN关于数据的假设要弱很多，
